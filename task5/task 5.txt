@@ -1,0 +1,63 @@
+import random
+
+class QuizQuestion:
+    def __init__(self, question, options, correct_answer):
+        self.question = question
+        self.options = options
+        self.correct_answer = correct_answer
+
+class QuizGame:
+    def __init__(self):
+        self.questions = []
+        self.score = 0
+
+    def add_question(self, question):
+        self.questions.append(question)
+
+    def load_questions(self):
+        self.add_question(QuizQuestion("What is the capital of France?", ["A) London", "B) Paris", "C) Berlin", "D) Rome"], "B"))
+        self.add_question(QuizQuestion("Which planet is known as the Red Planet?", ["A) Mars", "B) Venus", "C) Jupiter", "D) Earth"], "A"))
+        self.add_question(QuizQuestion("How many continents are there on Earth?", ["A) 5", "B) 6", "C) 7", "D) 8"], "C"))
+        self.add_question(QuizQuestion("What is the largest mammal on Earth?", ["A) Elephant", "B) Blue Whale", "C) Giraffe", "D) Lion"], "B"))
+        self.add_question(QuizQuestion("Which gas is most abundant in Earth's atmosphere?", ["A) Oxygen", "B) Carbon Dioxide", "C) Nitrogen", "D) Hydrogen"], "C"))
+        self.add_question(QuizQuestion("Who is the author of 'Romeo and Juliet'?", ["A) Charles Dickens", "B) William Shakespeare", "C) Mark Twain", "D) Jane Austen"], "B"))
+        self.add_question(QuizQuestion("What is the largest desert in the world?", ["A) Sahara Desert", "B) Gobi Desert", "C) Arabian Desert", "D) Kalahari Desert"], "A"))
+        self.add_question(QuizQuestion("Which gas do plants absorb from the atmosphere?", ["A) Oxygen", "B) Carbon Dioxide", "C) Nitrogen", "D) Hydrogen"], "B"))
+        self.add_question(QuizQuestion("What is the chemical symbol for gold?", ["A) Au", "B) Ag", "C) Fe", "D) Hg"], "A"))
+        self.add_question(QuizQuestion("In which year did the Titanic sink?", ["A) 1905", "B) 1912", "C) 1920", "D) 1935"], "B"))
+
+    def display_question(self, question):
+        print(question.question)
+        for option in question.options:
+            print(option)
+
+    def evaluate_answer(self, user_answer, correct_answer):
+        return user_answer == correct_answer
+
+    def play(self):
+        self.load_questions()
+        random.shuffle(self.questions)
+
+        print("Welcome to the Quiz Game!")
+
+        for question in self.questions:
+            print("-" * 40)
+            self.display_question(question)
+            user_answer = input("Select the correct option (A, B, C, or D): ").strip().upper()
+
+            if self.evaluate_answer(user_answer, question.correct_answer):
+                print("Correct!")
+                self.score += 1
+            else:
+                print(f"Incorrect. The correct answer is {question.correct_answer}.")
+
+        print("-" * 40)
+        print(f"Quiz completed! Your score: {self.score}/{len(self.questions)}")
+        if self score == len(self.questions):
+            print("Congratulations! You got all questions right!")
+        else:
+            print("Keep practicing. You can do better!")
+
+if __name__ == "__main__":
+    quiz = QuizGame()
+    quiz.play()
